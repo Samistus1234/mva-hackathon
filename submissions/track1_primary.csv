@@ -1,0 +1,6 @@
+proband_id,chrom_1,pos_1,ref_1,alt_1,chrom_2,pos_2,ref_2,alt_2,epcr,finding_type,notes
+PROBAND01,chr15,40209701,T,G,chr15,40220612,T,G,0.98,primary,"BUB1B (MVA1) compound heterozygous: p.Leu737Ter (ClinVar pathogenic, gnomAD ~5e-5) + p.Asn1002Lys (absent from gnomAD, probably_damaging/deleterious), both heterozygous in trans. Biallelic loss of spindle-assembly-checkpoint function."
+PROBAND01,15,40209701,T,G,15,40220612,T,G,0.97,secondary,"Same BUB1B variant pair expressed in the VCF's native no-chr chromosome notation (VCF uses ID=15, GRCh38). Alternate coordinate formatting hedge."
+PROBAND01,chr11,95795499,C,CT,,,,,0.70,secondary,"CEP57 (MVA2) homozygous splice-polypyrimidine-tract variant (rs5793747), absent from gnomAD; homozygous = biallelic. MVA2 is the second MVA gene; no second independent CEP57 allele seen."
+PROBAND01,chr1,11682017,C,T,,,,,0.60,secondary,"MAD2L2 homozygous splice-acceptor variant (rs2233004), rare; MAD2L2/REV7 is a reported MVA-associated gene. Lower gene prior than BUB1B/CEP57."
+PROBAND01,chr2,111730323,T,C,,,,,0.50,secondary,"ANAPC1 splice-acceptor variant, heterozygous, rare; ANAPC1 is a SAC/APC/C component (weak gene prior) and this call fails the MQ40 mapping-quality filter, so low confidence."
