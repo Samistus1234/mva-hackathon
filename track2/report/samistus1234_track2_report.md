@@ -20,20 +20,23 @@ Track 1 established the genotype: compound-heterozygous *BUB1B*, **p.Leu737Ter**
 The honest answer has three parts.
 
 **First, the two alleles are not equivalent, and that asymmetry is the entire
-therapeutic opening.** The truncating allele produces no protein at all. The missense
-allele produces a full-length protein that is *made normally and then destroyed early*.
-In MVA patients carrying exactly this architecture, restoring such missense protein to
-wild-type levels **fully restored mitotic checkpoint function** — the defect in that
-allele class is quantity, not quality (Suijkerbuijk 2010, PMID 20516114). A therapy that
-raises residual BUBR1 therefore has a defined, published mechanism of benefit.
+therapeutic opening.** The truncating allele is predicted to yield no protein at all, via
+nonsense-mediated decay. The missense allele produces a full-length protein that is *made
+normally and then destroyed early*. In a BUBR1-depleted human cell line, re-expressing the
+poorly-expressed MVA missense mutants I909T and L1012P to wild-type levels **fully restored
+the nocodazole checkpoint response** — evidence that for that allele class the defect is
+quantity rather than quality (Suijkerbuijk 2010, PMID 20516114). The equivalent experiment
+has never been done in patient cells, where only a partial rescue with wild-type cDNA was
+achieved. A therapy that raises residual BUBR1 therefore has a defined published mechanism
+of benefit, demonstrated in cell lines rather than in patients.
 
 **Second, no repurposed drug survives this patient's specifics.** We assessed all three
 axes the biology points to, and reported what we found rather than what we hoped:
 
 | Axis | Mechanism | Why it does not proceed here |
 |---|---|---|
-| **NAD⁺ / SIRT2** (NMN, nicotinamide riboside) | raises BubR1 via K668 deacetylation | tumours are NAD⁺-avid — oncology builds drugs to *deplete* it. Untested on any missense allele, and the headline mouse result is routinely misattributed (§5.2). |
-| **Senolytics** (dasatinib + quercetin, fisetin) | clears the senescent burden aneuploidy creates | dasatinib's labelled paediatric harm is **growth retardation** — this child's presenting complaint. Senescence is tumour-suppressive in rhabdomyosarcoma. No child has received a senolytic in any trial (§5.3). |
+| **NAD⁺ / SIRT2** (NMN, nicotinamide riboside) | raises BubR1 via K668 deacetylation | tumours are NAD⁺-avid — oncology builds drugs to *deplete* it — though the evidence cuts both ways. Untested on any missense allele, and the headline mouse result is routinely misattributed (§5.2). |
+| **Senolytics** (dasatinib + quercetin, fisetin) | clears the senescent burden aneuploidy creates | dasatinib's labelled paediatric harm is **growth retardation** — this child's presenting complaint; senescence can act as a tumour-suppressive barrier in rhabdomyosarcoma lines; and no senolytic regimen has been given to a child for a senolytic indication (§5.3). |
 | **Proteostasis** (arimoclomol) | the most mechanistically proximate lever: the mutant is cleared as misfolded | boosting proteostasis is the antidote to the known aneuploidy-selective vulnerabilities, so it may protect pre-malignant cells; the agent's generic mechanism failed in the two diseases where it was tested (§5.4). |
 
 **Third — and this is the contribution we would defend hardest — the rate-limiting step is
@@ -45,12 +48,15 @@ experiments on patient-derived cells, each designed to *refute* one of our own h
 that decide which axis if any deserves a drug at all.
 
 **Where that leads.** No one has ever attempted to pharmacologically stabilise BUBR1 — a
-real white space. And it is now a tractable one: raising a destabilised missense protein is
-a proven modality (migalastat in Fabry; elexacaftor/tezacaftor/ivacaftor in CF), and
-deucravacitinib is an approved drug that works by binding a **pseudokinase** domain and
-locking its conformation — which is structurally the same problem BUBR1 presents. The
-recommendation we would put to a funder is not a repurposed prescription today, but a
-purpose-built BUBR1 stabiliser programme with the §7 assays as its entry criterion (§5.5).
+real white space, and a more tractable one than it looks. Raising a destabilised missense
+protein to therapeutic effect is an established modality: elexacaftor/tezacaftor/ivacaftor
+in cystic fibrosis is a clean randomised win, and migalastat in Fabry is the closer
+structural analogy (though its own placebo-controlled endpoint was missed — §5.5 says so).
+Separately, deucravacitinib shows that a **pseudokinase** pocket can be drugged at all.
+Neither precedent is BUBR1, and §5.5 sets out the three questions that stand between here
+and a molecule. The recommendation we would put to a funder is therefore not a repurposed
+prescription today, but a purpose-built BUBR1 stabiliser programme with the §7 assays as
+its entry criterion.
 
 Alongside the analysis we release **`repurpose.py`**, a mechanism-hop tool built for the
 general case: when a rare-disease gene has no drugs (BUB1B has *zero* in DGIdb), it hops
@@ -65,19 +71,21 @@ the convergence can bear, which is less than the headline suggests.
 ## 2. The patient, in the terms the challenge provides
 
 The proband is a child whose clinical picture (HPO terms as released with the challenge)
-comprises rhabdomyosarcoma (HP:0002859), nephrocalcinosis since birth (HP:0000121),
-short stature (HP:0004322), failure to thrive (HP:0001508) with skeletal muscle atrophy
-(HP:0003202), premature birth at 32 weeks (HP:0001622), small-for-gestational-age birth
-weight around 1 kg (HP:0001518), and a parental history of recurrent spontaneous abortion
-(HP:0200067).
+comprises rhabdomyosarcoma (HP:0002859), nephrocalcinosis (HP:0000121), short stature
+(HP:0004322), failure to thrive (HP:0001508) with skeletal muscle atrophy (HP:0003202),
+premature birth (HP:0001622), small-for-gestational-age birth weight (HP:0001518), and a
+parental history of recurrent spontaneous abortion (HP:0200067).
 
 Read together this is a chromosome-segregation disorder: cancer predisposition plus
 severe pre- and post-natal growth restriction plus parental reproductive loss is the
 signature of constitutional aneuploidy, and the parents' miscarriages are part of the
 phenotype rather than background — embryonic aneuploidy arising from the same defect.
 
-*Per the challenge's data-use terms, this report adds no clinical detail beyond the
-released phenotype document. The repository publishes no read-level data, sample
+*Per the challenge's data-use terms, this report describes the proband only at the level
+of the HPO terms above. Free-text details that accompanied them in the released document —
+gestational age, birth weight, ages of onset — are deliberately omitted: nothing in the
+analysis depends on them, and in an ultra-rare disorder they add re-identification risk
+for no scientific gain. The repository publishes no read-level data, sample
 identifier, or derived variant table — only the variant predictions that constitute the
 Track 1 submission itself.*
 
@@ -137,6 +145,15 @@ PMID 27731420).
   class is a positional inference from the behaviour of neighbouring variants (I909T,
   L1012P), not a measured property. (p.Leu737Ter is Pathogenic/Likely pathogenic,
   multiple submitters, MVA1.)
+- **The null status of p.Leu737Ter is a prediction, not a measurement.** No functional
+  study of this variant exists. The nonsense-mediated-decay call is well founded — in
+  NM_001211.6 the variant sits in exon 17 of 23, some 748 nucleotides upstream of the final
+  exon–exon junction, far beyond the 50–55 nucleotide threshold — but it remains an
+  inference. It matters because Suijkerbuijk 2010 found that truncated BUBR1 *proteins* are
+  intrinsically stable when transcripts escape decay, most expressing at or above wild-type
+  levels. A 737X species escaping NMD would retain the KEN box, the TPR domain and the KARD
+  while losing only the pseudokinase domain; whether such a protein would be inert or would
+  compete with the missense allele is unknown, and is worth measuring alongside Experiment 1.
 - **Phase is inferred.** Parental genotypes were not available; *trans* configuration is
   supported by allele balance and by the recessive disease model, not proven.
 
@@ -189,17 +206,34 @@ drug evidence at all. **Nine of those 14 are acetylation machinery** — KAT2A a
 
 Two observations. The tightest binding partners — CDC20, BUB3, MAD2L1, the core checkpoint
 itself — are pharmacologically empty; the checkpoint is not a drug target. And a tool that
-knows nothing of the MVA literature puts the acetylation machinery, including SIRT2, in
-front of us — the same axis the published mouse work points to. That is why we took the
-axis seriously, and why we were then obliged to test it properly (§5.2, where it fails).
+knows nothing of the MVA literature puts BUBR1's **lysine-acetylation machinery** in front
+of us — the same post-translational node the published mouse work points to. That is why we
+took the axis seriously, and why we were then obliged to test it properly (§5.2).
 
 **How much weight that convergence bears — stated precisely, because it is easy to
-oversell.** The enrichment is real but the *ranking* is soft: the six top-priority rows all
-sit at exactly 0.40, the interaction floor, so their order is a tie broken by API row
-order rather than by biology, and SIRT2 itself ranks eighth (priority 0.217), not first.
-CREBBP/CBP — the acetyltransferase that opposes SIRT2 in the mechanism we go on to
-describe — is **absent** from BUB1B's IntAct neighbourhood entirely. So the honest claim is
-that the tool nominates the acetylation *class*, not that it identifies SIRT2 as the target.
+oversell, and because the biology is signed.** Three qualifications:
+
+*The ranking is soft.* The six top-priority rows all sit at exactly 0.40, the interaction
+floor, so their order is a tie broken by API row order rather than by biology. SIRT2 itself
+ranks eighth (priority 0.217), not first.
+
+*It is not the same site, and not the same direction.* BUBR1 carries at least two
+functionally opposed acetylation events. SIRT2 keeps **K668** deacetylated, and acetylation
+there drives degradation — the axis in §5.2. But PCAF (KAT2B) acetylates **K250**, and that
+acetylation *protects* BubR1: acetylation there "was required for checkpoint function,
+through the inhibition of ubiquitin-dependent BubR1 degradation" (Choi et al., EMBO J
+2009;28:2077–89, PMID 19407811), and UniProt annotates K250 as BUBR1's one acetylation
+site, by PCAF. So a KAT2A/KAT2B **inhibitor** — which is what most of the compounds behind
+those large DGIdb counts are — would be predicted to *destabilise* BUBR1: the wrong
+direction for this patient.
+
+*The specific acetyltransferase in the mouse work is missing.* CBP/CREBBP, the enzyme that
+opposes SIRT2 at K668 in North 2014, does not appear among BUB1B's interactors at all.
+
+Taken together: the tool lands on the right *node* — lysine acetylation controlling BUBR1
+abundance — while getting the site and the sign wrong. That is a genuinely useful thing to
+learn about a hop-based ranking, and it sharpens the closing point below: this method
+scores tractability, not therapeutic merit, and it cannot see direction of effect.
 
 We checked that this is not simply what a hub-rich interactome returns for any gene. Run on
 unrelated disease genes, the acetylation machinery does not dominate: *HBB* returns HSPA8,
@@ -231,7 +265,8 @@ this architecture, noting that "in patients with biallelic mutations, a missense
 pairs with a truncating mutation" (Cancer Res 2010;70:4891–900, PMID 20516114). They found:
 
 - Truncating alleles (386X, 731X, 753X) gave **no detectable protein**, from absent
-  transcript — the fate we predict for p.Leu737Ter.
+  transcript — the fate we predict for p.Leu737Ter (see §3.4 for why this is a prediction
+  rather than a finding).
 - Kinase-domain missense alleles gave **normal mRNA** but ~2-fold accelerated protein
   turnover and 2–6× reduced protein. Abundance fell most when mutations were "in or near
   the kinase domain."
@@ -307,17 +342,26 @@ for NAMPT inhibitors in oncology is to **deplete** NAD⁺ in tumour cells (Heske
 Oncol 2020;9:1514, PMID 32010616 — NCI Pediatric Oncology Branch). And NR supplementation
 "results in a significant increase in cancer prevalence and metastases of TNBC to the
 brain" (Maric et al., Biosens Bioelectron 2023;220:114826, PMID 36371959; caveat: a
-probe-development paper, one murine TNBC model, not paediatric sarcoma). Reports in other
-tumour types point the other way, but we could not verify one to primary-source standard
-and therefore do not cite it as a counterweight.
+probe-development paper, one murine TNBC model, not paediatric sarcoma).
 
-In a child **who has already had a rhabdomyosarcoma and carries a constitutional
-chromosomal-instability cancer-predisposition syndrome**, systemically raising a
-metabolite that proliferating tumour cells depend on is not a step to take on a mechanism
-that has never been tested in the relevant allele class.
+**But the evidence genuinely cuts both ways, and an earlier draft of this report was
+harsher than its own sources.** In the largest randomised test of an NAD⁺ precursor in
+cancer, ONTRAC, nicotinamide 500 mg twice daily for 12 months **reduced** new non-melanoma
+skin cancers in a phase 3 double-blind trial of 386 high-risk patients (Chen et al., N Engl
+J Med 2015;373:1618–26, PMID 26488693). And our own paediatric-tolerability citations point
+the same way: **ataxia-telangiectasia is itself a genome-instability, cancer-predisposition
+syndrome**, and 17 children with it received nicotinamide riboside for four months on
+investigator and ethics-committee judgement (PMID 34515380). We cite that trial for dosing
+above; intellectual honesty requires citing it here too.
 
-**Verdict: mechanistically interesting, currently not advanceable in this patient.**
-Retained as a cell-based experimental question (§7), not as a clinical proposal.
+**Verdict: unresolved, and unfavourable in this specific context.** The general claim that
+NAD⁺ repletion is oncologically unsafe does not survive ONTRAC. What remains is narrower
+and still serious: the direction of effect is tumour-type dependent, the one model closest
+to a metastasis question went the wrong way, and nothing has ever been tested in a sarcoma
+or in a chromosomal-instability syndrome. Combined with the fact that the mechanism has
+never been tested on any missense BUBR1 allele, that is enough to keep this a cell-based
+experimental question (§7) rather than a clinical proposal — but not enough to call it
+disqualified, and we have corrected that wording.
 
 ### 5.3 Strategy B — clear the senescent-cell burden
 
@@ -346,7 +390,12 @@ BubR1 paper also exists and is a different study).
    assessment completion, not efficacy (PMID 30616998); it did not replicate against
    placebo (Nambiar 2023, PMID 36857968). The best-powered senolytic RCT to date missed its
    primary endpoint on a bone marker, p = 0.611 (Farr et al., Nat Med 2024, PMID 38956196)
-   — the tissue axis closest to this child's growth failure.
+   — the tissue axis closest to this child's growth failure. In fairness to the drug class,
+   that trial's exploratory analysis found the skeletal response was driven by women in the
+   **highest tertile of senescent-cell burden** (P1NP +34%, CTx −11%, radius BMD +2.7%), and
+   its authors call for studies testing whether burden dictates response. That is our §7
+   Experiment 2 appearing inside the best-powered senolytic RCT — external support for
+   measuring burden before treating, and we would rather cite it than omit it.
 3. **Dasatinib is the wrong drug for this child.** It is FDA-approved from age 1, but its
    own label warns of effects on growth and development in paediatric patients — **delayed
    epiphyseal fusion, osteopenia and growth retardation** — reported in 5 (5.2%) children
@@ -356,23 +405,38 @@ BubR1 paper also exists and is a different study).
    children lost a median **0.35 height SDS at 12 months and 0.76 SDS at 24 months**, the
    effect more pronounced in prepubertal patients during the first year, with **only 18%
    growing adequately between months 12 and 18** (Stiehler et al., Haematologica
-   2024;109:2555–63, PMID 38497150). Dasatinib inhibits a broader kinase set than imatinib,
-   including growth-plate-relevant c-KIT and PDGFR.
+   2024;109:2555–63, PMID 38497150). Imatinib and dasatinib **share** the growth-plate-relevant
+   targets KIT and PDGFRα/β — which is precisely why the imatinib growth data are informative
+   here; dasatinib additionally inhibits the SRC-family kinases. There is no basis for
+   expecting a milder growth-plate profile from the broader agent.
 
    So the drug's principal paediatric harm and this child's presenting complaint are the
    same axis, in a prepubertal patient. Treating growth failure with an agent labelled for
    growth retardation demands a stronger efficacy case than a null RCT provides.
-4. **Senescence is tumour-suppressive in this patient's exact tumour type.** Oncogene-
-   induced senescence in human rhabdomyosarcoma cells is p16/p21-mediated (PMID 34389744).
-   Removing a tumour-suppressive barrier in a cancer-predisposed child is a real risk.
+4. **Senescence may be a tumour-suppressive barrier in rhabdomyosarcoma.** Oncogene-induced
+   senescence in human rhabdomyosarcoma lines is p16/p21-mediated — but the response was
+   context-dependent across the three lines tested and absent in the RAS-driven embryonal
+   line RD, and MVA-associated rhabdomyosarcoma is typically embryonal (PMID 34389744).
+   Note also the unstated step: senolytics clear cells that are *already* senescent, they do
+   not block induction of senescence. Whether clearing established senescent cells would
+   remove a tumour-suppressive barrier in a cancer-predisposed child is unknown.
    Stated fairly, the counterweight is that Baker 2016 saw no increased tumour incidence
    and *increased* latency — so the risk is mechanistically plausible rather than
    empirically demonstrated, and has never been tested in a cancer-predisposed host.
 
-**And the field itself has drawn the line.** No senolytic has been given to a child, in
-any trial, for any indication. The most telling datum: St Jude's phase 2 senolytic trial
-in **survivors of childhood cancer** (NCT04733534, n=110, D+Q and fisetin) set a minimum
-age of **18**. The leading paediatric oncology centre deliberately did not enrol children.
+**Where the field has actually drawn the line — stated precisely, because the sweeping
+version is false.** Individual senolytic components do have paediatric exposure: dasatinib
+is approved from age 1, as noted above, and **quercetin has been given to children aged 2
+and over in a chromosome-instability cancer-predisposition syndrome** — NCT03476330,
+quercetin chemoprevention for squamous-cell carcinoma in Fanconi anaemia, phase 2,
+completed, n = 48 — with a second such trial in dyskeratosis congenita (NCT07628972). That
+is a close precedent for this patient's situation, and it argues *for* feasibility.
+
+What has never happened is a senolytic **regimen given for a senolytic indication** in a
+child. The most telling datum is St Jude's phase 2 senolytic trial in **survivors of
+childhood cancer** (NCT04733534, n = 110, D+Q and fisetin), which set a minimum age of
+**18**: the leading paediatric oncology centre, in the population closest to this child,
+chose not to enrol children.
 
 **Verdict: the mechanism is sound; the drug class is not deployable here.** If this axis
 were pursued at all, the candidate would be **fisetin** rather than D+Q — it has mouse
@@ -428,7 +492,7 @@ approved, paediatric, chaperone-directed. Three findings argue against leading w
    proposal depends on.
 3. **Two of its safety signals map onto this patient.** Transaminase elevation (≥3× ULN in
    7% vs 1%) and a case of **tubulointerstitial nephritis** in the IBM arm — the latter
-   non-trivial in a child with nephrocalcinosis since birth.
+   non-trivial in a child with nephrocalcinosis.
 
 **And the tension that decides the ranking.** The three canonical aneuploidy-*selective*
 antiproliferative agents are AICAR, 17-AAG (an HSP90 **inhibitor**), and chloroquine (Tang,
@@ -463,22 +527,46 @@ our reading.
 
 It is worth saying what the successful precedents actually establish. Raising a
 destabilised missense protein with a small molecule is a **proven modality in human genetic
-disease**: migalastat for Fabry (PMID 27509102, PMID 27834756) and
-elexacaftor/tezacaftor/ivacaftor for CFTR F508del (PMID 31697873, PMID 31679946) both
-deliver randomised clinical benefit by exactly this logic. But none of them is a generic
-chaperone booster — every one is a target-specific molecule from a dedicated screening
-campaign against that single protein. The modality works; the shortcut does not.
+disease**, though the strength of the randomised evidence varies by programme.
+Elexacaftor/tezacaftor/ivacaftor for CFTR F508del is a clean randomised win (ppFEV₁ +13.8
+and +10.0; PMID 31697873, PMID 31679946). Migalastat is the closer *structural* analogy —
+an oral pharmacological chaperone that stabilises specific mutant α-galactosidase forms —
+but its placebo-controlled primary endpoint was **not met** (41% vs 28% responders,
+P = 0.30; PMID 27509102), and approval rested on an open-label non-inferiority comparison
+against enzyme replacement in amenable variants (PMID 27834756). We state that plainly
+because the precedent is load-bearing here and a Fabry clinician would know it.
+
+Either way, none of them is a generic chaperone booster — every one is a target-specific
+molecule from a dedicated screening campaign against that single protein. The modality
+works; the shortcut does not.
 
 Two further observations make the purpose-built route unusually plausible here:
 
-**A degenerate pseudokinase pocket is druggable.** Deucravacitinib is FDA-approved and works
-by binding the **pseudokinase (JH2) domain** of TYK2, locking a domain conformation
-allosterically (PMID 36754102). Set that beside Suijkerbuijk 2012's finding that BUBR1's
-ATP-interacting residues serve *conformational stability* rather than catalysis
-(PMID 22698286), and the structural argument writes itself: BUBR1 has a degenerate ATP
-pocket whose occupancy is about holding a fold together, and the field has already shipped
-an approved drug that does precisely that to another pseudokinase. A BUBR1
-pseudokinase-pocket stabiliser is chemically conceivable.
+**Pseudokinase pockets are ligandable — and that is all this precedent establishes.**
+Deucravacitinib is FDA-approved and works by binding and stabilising the **pseudokinase
+(JH2) domain** of TYK2 (PMID 36754102). That is genuine proof of chemical tractability for
+a pseudokinase pocket, and we want to be exact about how far it carries, because it is
+tempting to over-read.
+
+It does not carry all the way. Deucravacitinib exploits an *intramolecular autoinhibitory*
+geometry — clamping JH2 against the adjacent catalytically **active** JH1 domain to switch
+signalling off — and BUBR1 has no active kinase domain to switch off. Deucravacitinib has
+never been shown to raise TYK2 protein levels, which is the property we actually need. The
+stabilisation-for-abundance precedent remains migalastat and the CFTR correctors; TYK2 adds
+ligandability only.
+
+Three open questions would have to be answered, and none is trivial: whether BUBR1's pocket
+is ligandable at all (there is no published small-molecule ligand and no co-structure — the
+evidence for its role is mutational and homology-based); whether occupancy would raise
+steady-state abundance rather than merely bind; and whether a conformation-locking ligand
+would impair the very function this domain performs — PP2A-B56 recruitment and checkpoint
+silencing (PMID 33207204), the same objection §5.1 raises against expanding the mutant pool.
+
+Note also that "degenerate" undersells the pocket in a way that works against the argument:
+Suijkerbuijk 2012 reports that catalytic motifs degenerated in some vertebrates but that
+human BUBR1 **retained the catalytic triad**. Pocket integrity is exactly what a
+druggability case needs. A BUBR1 stabiliser is conceivable — it is not an argument that
+writes itself.
 
 **Amenability would have to be variant-specific.** Migalastat required a companion
 pharmacogenetic assay because only a subset of *GLA* missense variants respond
@@ -512,11 +600,21 @@ sources, and then had to withdraw against the primary literature.
 | "The BubR1 hypomorph models this patient." | It models the progeroid half. Those mice "do not live long enough to assess predisposition to spontaneous tumors" (PMID 31738183) — and the patient's defining event is a cancer. |
 | "A genotype-matched mouse exists." | BubR1^X753/L1002P is **embryonic lethal before E13.5**; the equivalent human lived 3.6 months. |
 | "Raising total BUBR1 is straightforwardly beneficial." | Allelic effects exist "beyond protein level": the missense protein actively interferes with sister-chromatid cohesion (PMID 31738183). |
+| "In MVA *patients*, restoring the missense protein fully restored checkpoint function." | The full rescue was in BUBR1-depleted **HeLa/U2OS** cells. Patient lymphoblastoid lines got only a partial 2-fold rescue with wild-type cDNA (PMID 20516114). |
+| "Migalastat delivers randomised clinical benefit." | Its placebo-controlled primary endpoint **failed** (41% vs 28%, P = 0.30; PMID 27509102); approval rested on open-label non-inferiority against ERT (PMID 27834756). |
+| "No senolytic has ever been given to a child, for any indication." | False. Quercetin was given to children ≥2 in Fanconi anaemia (NCT03476330, phase 2, completed, n = 48) and dyskeratosis congenita (NCT07628972); dasatinib is approved from age 1 — which our own §5.3 states two paragraphs earlier. |
+| "We could not verify any evidence that NAD⁺ precursors reduce cancer risk." | ONTRAC is a phase 3 NEJM RCT (n = 386) in which nicotinamide reduced non-melanoma skin cancers (PMID 26488693). One database query. |
+| "The tool converges on the SIRT2 axis." | It converges on the acetylation *node* but on the **opposite site and sign**: PCAF acetylates K250 and thereby *protects* BubR1 (PMID 19407811), while CBP/CREBBP — the enzyme in the SIRT2 story — is absent from the hits entirely. |
+| "Dasatinib inhibits growth-plate-relevant KIT and PDGFR *in addition to* imatinib's targets." | Backwards. KIT and PDGFRα/β are imatinib's canonical non-ABL targets — which is why imatinib growth data transfer at all. |
 
-One further discipline: where we could not verify a citation to primary-source standard we
-dropped it rather than soften it. A report suggesting that nicotinamide riboside *suppresses*
-some tumour types would have made our NAD⁺ section look more balanced; we could not verify
-it and so it does not appear as a counterweight.
+Two disciplines worth naming, because the second one caught us. First: where we could not
+verify a citation to primary-source standard, we dropped it rather than softening it.
+Second, and more important: **we submitted this report to adversarial review by readers who
+had not written it, and the last six rows above are what that returned.** A recurring
+pattern in their findings was that our draft was *harsher than its own sources* — three
+times we stated an objection more absolutely than the evidence supported, and in doing so
+discarded evidence we actually needed. Being unfairly hard on a candidate is a rigour
+failure in the same way that overselling one is.
 
 ---
 
@@ -632,7 +730,11 @@ confirmation to the organisers as required.
 3. There is no viable animal model of this allelic architecture — the genotype-matched
    mouse is embryonic lethal.
 4. The mouse hypomorph models the progeroid half of MVA but not spontaneous childhood
-   cancer, which is this patient's defining event.
+   cancer. Two different features of this case carry weight in different places, and we
+   use them deliberately: the **rhabdomyosarcoma** is the event that triggered investigation
+   and drives the oncological safety analysis, while the **growth failure** is the chronic
+   phenotype a therapy would most plausibly modify — and the reason a drug labelled for
+   growth retardation is disqualifying rather than merely unattractive.
 5. The pipeline's ranking reflects interaction confidence and pharmacological maturity
    only; it is blind to safety, tissue distribution, and blood-brain penetration, and its
    interaction scores inherit IntAct's coverage bias toward well-studied proteins.
@@ -691,28 +793,34 @@ standard it was dropped from the analysis rather than cited with a hedge.
 29. Li JJ, et al. Expression of oncogenic HRAS in human Rh28 and RMS-YM rhabdomyosarcoma cells leads to oncogene-induced senescence. *Sci Rep*. 2021;11(1):16505. PMID **34389744**.
 30. ClinicalTrials.gov NCT04733534 — senolytics in survivors of childhood cancer (minimum age 18).
 
+31. Choi E, Choe H, Min J, et al. BubR1 acetylation at prometaphase is required for modulating APC/C activity and timing of mitosis. *EMBO J*. 2009;28(14):2077–89. PMID **19407811**.
+32. Chen AC, Martin AJ, Choy B, et al. A phase 3 randomized trial of nicotinamide for skin-cancer chemoprevention. *N Engl J Med*. 2015;373(17):1618–26. PMID **26488693**.
+33. ClinicalTrials.gov NCT03476330 — quercetin chemoprevention for squamous cell carcinoma in Fanconi anaemia; phase 2, completed, n = 48, minimum age 2 years.
+34. ClinicalTrials.gov NCT07628972 — quercetin in dyskeratosis congenita / telomere biology disorders; minimum age 2 years.
+
 **Proteostasis, aneuploidy vulnerability, and stabiliser precedents**
 
-31. Shelton LB, Baker JD, Zheng D, et al. Hsp90 activator Aha1 drives production of pathological tau aggregates. *PNAS*. 2017;114(36):9707–12. PMID **28827321**.
-32. Keam SJ. Arimoclomol: first approval. *Drugs*. 2025. PMID **39715913**.
-33. Benatar M, Hansen T, Rom D, et al. Safety and efficacy of arimoclomol in patients with early amyotrophic lateral sclerosis (ORARIALS-01). *Lancet Neurol*. 2024;23(7):687–99. PMID **38782015**.
-34. Machado PM, Badrising UA, Hanna MG, et al. Safety and efficacy of arimoclomol for inclusion body myositis. *Lancet Neurol*. 2023;22(10):900–11. PMID **37739573**.
-35. Ippolito MR, Zerbib J, Eliezer Y, et al. Increased RNA and protein degradation is required for counteracting transcriptional burden and proteotoxic stress in human aneuploid cells. *Cancer Discov*. 2024;14(11):2532–53. PMID **39247952**.
-36. Tang YC, Williams BR, Siegel JJ, Amon A. Identification of aneuploidy-selective antiproliferation compounds. *Cell*. 2011;144(4):499–512. PMID **21315436**.
-37. Joy J, Barrio L, Santos-Tapia C, et al. Proteostasis failure and mitochondrial dysfunction lead to aneuploidy-induced senescence. *Dev Cell*. 2021;56(15):2043–58. PMID **34216545**.
-38. Germain DP, Hughes DA, Nicholls K, et al. Treatment of Fabry's disease with the pharmacologic chaperone migalastat. *N Engl J Med*. 2016;375(6):545–55. PMID **27509102**.
-39. Benjamin ER, Della Valle MC, Wu X, et al. The validation of pharmacogenetics for the identification of Fabry patients to be treated with migalastat. *Genet Med*. 2017;19(4):430–8. PMID **27657681**.
-40. Middleton PG, Mall MA, Dřevínek P, et al. Elexacaftor–tezacaftor–ivacaftor for cystic fibrosis with a single Phe508del allele. *N Engl J Med*. 2019;381(19):1809–19. PMID **31697873**.
-41. Heijerman HGM, McKone EF, Downey DG, et al. Efficacy and safety of the elexacaftor/tezacaftor/ivacaftor combination regimen in people with cystic fibrosis homozygous for the F508del mutation. *Lancet*. 2019;394(10212):1940–8. PMID **31679946**.
-42. Roskoski R. Deucravacitinib is an allosteric TYK2 protein kinase inhibitor FDA-approved for the treatment of psoriasis. *Pharmacol Res*. 2023;189:106642. PMID **36754102**.
+35. Shelton LB, Baker JD, Zheng D, et al. Hsp90 activator Aha1 drives production of pathological tau aggregates. *PNAS*. 2017;114(36):9707–12. PMID **28827321**.
+36. Keam SJ. Arimoclomol: first approval. *Drugs*. 2025. PMID **39715913**.
+37. Benatar M, Hansen T, Rom D, et al. Safety and efficacy of arimoclomol in patients with early amyotrophic lateral sclerosis (ORARIALS-01). *Lancet Neurol*. 2024;23(7):687–99. PMID **38782015**.
+38. Machado PM, Badrising UA, Hanna MG, et al. Safety and efficacy of arimoclomol for inclusion body myositis. *Lancet Neurol*. 2023;22(10):900–11. PMID **37739573**.
+39. Ippolito MR, Zerbib J, Eliezer Y, et al. Increased RNA and protein degradation is required for counteracting transcriptional burden and proteotoxic stress in human aneuploid cells. *Cancer Discov*. 2024;14(11):2532–53. PMID **39247952**.
+40. Tang YC, Williams BR, Siegel JJ, Amon A. Identification of aneuploidy-selective antiproliferation compounds. *Cell*. 2011;144(4):499–512. PMID **21315436**.
+41. Joy J, Barrio L, Santos-Tapia C, et al. Proteostasis failure and mitochondrial dysfunction lead to aneuploidy-induced senescence. *Dev Cell*. 2021;56(15):2043–58. PMID **34216545**.
+42. Germain DP, Hughes DA, Nicholls K, et al. Treatment of Fabry's disease with the pharmacologic chaperone migalastat. *N Engl J Med*. 2016;375(6):545–55. PMID **27509102**. (FACETS — primary endpoint not met, 41% vs 28%, P = 0.30.)
+43. Hughes DA, Nicholls K, Shankar SP, et al. Oral pharmacological chaperone migalastat compared with enzyme replacement therapy in Fabry disease (ATTRACT). *J Med Genet*. 2017;54(4):288–96. PMID **27834756**. (Open-label non-inferiority against ERT.)
+44. Benjamin ER, Della Valle MC, Wu X, et al. The validation of pharmacogenetics for the identification of Fabry patients to be treated with migalastat. *Genet Med*. 2017;19(4):430–8. PMID **27657681**.
+45. Middleton PG, Mall MA, Dřevínek P, et al. Elexacaftor–tezacaftor–ivacaftor for cystic fibrosis with a single Phe508del allele. *N Engl J Med*. 2019;381(19):1809–19. PMID **31697873**.
+46. Heijerman HGM, McKone EF, Downey DG, et al. Efficacy and safety of the elexacaftor/tezacaftor/ivacaftor combination regimen in people with cystic fibrosis homozygous for the F508del mutation. *Lancet*. 2019;394(10212):1940–8. PMID **31679946**.
+47. Roskoski R. Deucravacitinib is an allosteric TYK2 protein kinase inhibitor FDA-approved for the treatment of psoriasis. *Pharmacol Res*. 2023;189:106642. PMID **36754102**.
 
 **Paediatric TKI safety**
 
-43. SPRYCEL (dasatinib) US prescribing information, Warnings and Precautions §5, effects on growth and development in paediatric patients.
-44. Stiehler S, et al. Imatinib treatment and longitudinal growth in pediatric patients with chronic myeloid leukemia. *Haematologica*. 2024;109(8):2555–63. PMID **38497150**.
+48. SPRYCEL (dasatinib) US prescribing information, Warnings and Precautions §5, effects on growth and development in paediatric patients.
+49. Stiehler S, et al. Imatinib treatment and longitudinal growth in pediatric patients with chronic myeloid leukemia. *Haematologica*. 2024;109(8):2555–63. PMID **38497150**.
 
 **Databases and tooling**
 
-45. Open Targets Platform GraphQL API (target interactions, IntAct-derived scores).
-46. DGIdb v5 GraphQL API (drug–gene interactions).
-47. ClinicalTrials.gov API v2 — `mosaic variegated aneuploidy` → 0 studies; `BUB1B` → 0 studies (queried 2026-08-27).
+50. Open Targets Platform GraphQL API (target interactions, IntAct-derived scores).
+51. DGIdb v5 GraphQL API (drug–gene interactions).
+52. ClinicalTrials.gov API v2 — `mosaic variegated aneuploidy` → 0 studies; `BUB1B` → 0 studies (queried 2026-08-27).
