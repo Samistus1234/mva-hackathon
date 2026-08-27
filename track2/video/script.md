@@ -51,9 +51,9 @@ domain; then the second allele highlighted inside it.
 > The other is a single letter change inside the domain that holds BUBR1 folded. That copy
 > makes a complete protein. The cell just throws it away too quickly.
 >
-> And in patients with exactly this combination, restoring that protein to normal levels
-> restored the checkpoint completely. The defect is quantity, not quality. That is a
-> target.
+> And when researchers took the equivalent mutants from patients with this combination and
+> restored them to normal levels in human cells, the checkpoint came back completely. The
+> defect is quantity, not quality. That is a target.
 
 ### 5 · The honest part (1:55–2:35)
 **Visual:** three candidate cards sliding in, each stamped with its disqualifier in red.
@@ -62,13 +62,15 @@ domain; then the second allele highlighted inside it.
 > rather than what we hoped.
 >
 > Boosting NAD-plus raises this protein in mice. But tumours run on NAD-plus — oncology
-> builds drugs to deplete it. In a child who has already had a rhabdomyosarcoma, that is
-> not a bet you make on untested mechanism.
+> builds drugs to deplete it. The evidence genuinely cuts both ways, and it has never been
+> tested on a variant like this one. In a child who has already had a sarcoma, that is not
+> a bet you make on untested mechanism.
 >
 > Senolytics clear the damaged cells aneuploidy leaves behind. But the standard senolytic
 > is dasatinib, whose labelled harm in children is stunted growth — this child's own
-> presenting complaint. No child has ever received a senolytic in any trial. St Jude's
-> study, in survivors of childhood cancer, set the minimum age at eighteen.
+> presenting complaint. And no senolytic regimen has ever been trialled in a child for that
+> purpose. St Jude's study, in survivors of childhood cancer, set the minimum age at
+> eighteen.
 >
 > And boosting the cell's protein-folding machinery — the most direct lever of the three —
 > is precisely the antidote to the vulnerabilities that make aneuploid cells killable. In a
@@ -100,3 +102,14 @@ domain; then the second allele highlighted inside it.
 - **Pacing:** hold the terminal "0 drugs" for a full beat — it is the film's turn.
 - **End card:** github.com/Samistus1234/mva-hackathon + "Hypotheses for laboratory
   follow-up. Not medical advice."
+
+---
+
+## Rendered output
+
+- **Final video:** `mva_track2_pitch.mp4` — 2:45, 1920×1080, 25 fps, loudness-normalised
+  to −16 LUFS. Not committed (13 MB); produced from the frames in this directory plus
+  ElevenLabs narration, assembled with ffmpeg.
+- **Frames:** `f1_problem.png` … `f6_end.png`, plus `terminal.png` (the stage-0 "0 drugs"
+  moment). Rendered from HTML at 1920×1080 via headless Chrome, so every frame is
+  reproducible and editable as text.
