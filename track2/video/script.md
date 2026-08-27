@@ -95,8 +95,9 @@ domain; then the second allele highlighted inside it.
 
 ## Production notes
 
-- **Narrator:** ElevenLabs, measured documentary register; no urgency, no sentimentality.
-  The material carries itself.
+- **Narrator:** Ifeoma (ElevenLabs, Nigerian accent) — measured documentary register, no
+  urgency, no sentimentality. She reads slower than the default voices, so the delivered
+  audio is time-compressed 1.17x in ffmpeg (pitch-preserving) to land the film at 2:58.
 - **Music:** sparse piano, low bed, ducking under narration; silence for the "zero" hold.
 - **Type:** the mechanism figure's palette (`#0d1117` ground) so figure and titles match.
 - **Pacing:** hold the terminal "0 drugs" for a full beat — it is the film's turn.
@@ -107,7 +108,7 @@ domain; then the second allele highlighted inside it.
 
 ## Rendered output
 
-- **Final video:** `mva_track2_pitch.mp4` — 2:45, 1920×1080, 25 fps, loudness-normalised
+- **Final video:** `mva_track2_pitch.mp4` — 2:58, 1920×1080, 25 fps, loudness-normalised
   to −16 LUFS. Not committed (13 MB); produced from the frames in this directory plus
   ElevenLabs narration, assembled with ffmpeg.
 - **Frames:** `f1_problem.png` … `f6_end.png`, plus `terminal.png` (the stage-0 "0 drugs"
