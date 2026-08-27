@@ -2,3 +2,5 @@
 data/
 analysis/candidates.tsv
 .DS_Store
+track2/__pycache__/
+*.pyc

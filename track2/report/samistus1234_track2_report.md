@@ -85,9 +85,9 @@ phenotype rather than background — embryonic aneuploidy arising from the same 
 of the HPO terms above. Free-text details that accompanied them in the released document —
 gestational age, birth weight, ages of onset — are deliberately omitted: nothing in the
 analysis depends on them, and in an ultra-rare disorder they add re-identification risk
-for no scientific gain. The repository publishes no read-level data, sample
-identifier, or derived variant table — only the variant predictions that constitute the
-Track 1 submission itself.*
+for no scientific gain. The repository publishes no read-level data and no patient-derived
+variant table — only the variant predictions that constitute the Track 1 submission
+itself.*
 
 ---
 
@@ -719,8 +719,7 @@ complaint is growth failure — the same axis as the drug's labelled toxicity.
 challenge, under the terms accepted at download (WCG IRB protocol #20252010). This report
 adds no clinical detail beyond the released phenotype document. The public repository
 carries code, public-database outputs, this analysis, and the variant predictions that were
-submitted and scored — no read-level data, sample identifier, or patient-derived variant
-table. All challenge data will be deleted within 30 days of challenge close, with
+submitted and scored — no read-level data and no patient-derived variant table. All challenge data will be deleted within 30 days of challenge close, with
 confirmation to the organisers as required.
 
 **Limitations.**
