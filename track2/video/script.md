@@ -1,7 +1,7 @@
 # Track 2 pitch video — 3 minutes
 
 **Team Samistus1234 · MVA Hackathon 2026**
-Target 2:55–3:00. Narrated film, no on-camera presenter. ~420 words at ~145 wpm.
+Target 2:55–3:00. Narrated film, no on-camera presenter. ~447 words at ~150 wpm.
 
 **Compliance:** no patient identifiers, no images of the child or family, no clinical
 detail beyond the released HPO phenotype. Framed throughout as research hypotheses.
@@ -15,8 +15,8 @@ detail beyond the released HPO phenotype. Framed throughout as research hypothes
 feature list assembling as text.
 
 > A child somewhere is living with Mosaic Variegated Aneuploidy. Fewer than fifty people
-> worldwide are known to have it. There is no established treatment. His family opened his
-> genome to strangers, hoping someone would find something.
+> worldwide are known to have it. There is no established treatment. Their family opened
+> that child's genome to strangers, hoping someone would find something.
 >
 > In Track One, we found it.
 
@@ -56,10 +56,10 @@ domain; then the second allele highlighted inside it.
 > target.
 
 ### 5 · The honest part (1:55–2:35)
-**Visual:** two candidate cards sliding in, each stamped with its disqualifier in red.
+**Visual:** three candidate cards sliding in, each stamped with its disqualifier in red.
 
-> So which drug? We tested two obvious answers, and reported what we found rather than
-> what we hoped.
+> So which drug? We tested every axis the biology offers, and reported what we found
+> rather than what we hoped.
 >
 > Boosting NAD-plus raises this protein in mice. But tumours run on NAD-plus — oncology
 > builds drugs to deplete it. In a child who has already had a rhabdomyosarcoma, that is
@@ -69,6 +69,10 @@ domain; then the second allele highlighted inside it.
 > is dasatinib, whose labelled harm in children is stunted growth — this child's own
 > presenting complaint. No child has ever received a senolytic in any trial. St Jude's
 > study, in survivors of childhood cancer, set the minimum age at eighteen.
+>
+> And boosting the cell's protein-folding machinery — the most direct lever of the three —
+> is precisely the antidote to the vulnerabilities that make aneuploid cells killable. In a
+> child predisposed to cancer, that cuts both ways.
 
 ### 6 · The contribution (2:35–3:00)
 **Visual:** the two experiments as a clean decision tree, then the repo URL.

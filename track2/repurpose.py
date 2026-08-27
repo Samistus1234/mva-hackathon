@@ -52,8 +52,13 @@ def graphql(url: str, query: str, retries: int = 3) -> dict:
         try:
             with urllib.request.urlopen(request, timeout=60) as response:
                 body = json.loads(response.read())
-            if "errors" in body and not body.get("data"):
-                raise RuntimeError(body["errors"])
+            # A GraphQL response can carry BOTH data and errors, with the failed field
+            # nulled out. Treating that as success turns a server-side failure into a
+            # confident empty result, so any error is fatal.
+            if body.get("errors"):
+                raise RuntimeError(f"{url} returned GraphQL errors: {body['errors']}")
+            if body.get("data") is None:
+                raise RuntimeError(f"{url} returned no data block")
             return body["data"]
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
             if attempt == retries - 1:
@@ -74,28 +79,45 @@ def resolve_ensembl_id(symbol: str) -> str:
     raise SystemExit(f"No Open Targets target found for {symbol!r}")
 
 
-def mechanism_neighbourhood(ensembl_id: str, size: int) -> list[dict]:
-    """Physical interactors of the disease gene, best-scoring first, deduplicated."""
-    data = graphql(
-        OPEN_TARGETS,
-        f'{{ target(ensemblId: "{ensembl_id}") {{ approvedSymbol '
-        f"interactions(sourceDatabase: intact, page: {{index: 0, size: {size}}}) "
-        f"{{ count rows {{ score targetB {{ approvedSymbol id }} }} }} }} }}",
-    )
-    target = data["target"]
+def mechanism_neighbourhood(ensembl_id: str, page_size: int = 100) -> list[dict]:
+    """
+    Every physical interactor of the gene, best-scoring first, deduplicated.
+
+    Open Targets paginates interactions and reports the true total in `count`. An
+    earlier version fetched one page and ignored `count`, which silently dropped most
+    of a well-studied gene's neighbourhood (TP53 has 918 rows; one page of 100 loses
+    89% of them) — and the loss was invisible in the output. We now page to `count`.
+    """
     best: dict[str, dict] = {}
-    for row in target["interactions"]["rows"]:
-        partner = row.get("targetB") or {}
-        symbol = partner.get("approvedSymbol")
-        score = row.get("score") or 0.0
-        if not symbol or score < MIN_INTERACTION_SCORE:
-            continue
-        if symbol not in best or score > best[symbol]["interaction_score"]:
-            best[symbol] = {
-                "symbol": symbol,
-                "ensembl_id": partner.get("id"),
-                "interaction_score": score,
-            }
+    index, total = 0, None
+    while True:
+        data = graphql(
+            OPEN_TARGETS,
+            f'{{ target(ensemblId: "{ensembl_id}") {{ approvedSymbol '
+            f"interactions(sourceDatabase: intact, "
+            f"page: {{index: {index}, size: {page_size}}}) "
+            f"{{ count rows {{ score targetB {{ approvedSymbol id }} }} }} }} }}",
+        )
+        interactions = (data.get("target") or {}).get("interactions")
+        if not interactions:
+            break
+        total = interactions["count"]
+        rows = interactions["rows"] or []
+        for row in rows:
+            partner = row.get("targetB") or {}
+            symbol = partner.get("approvedSymbol")
+            score = row.get("score") or 0.0
+            if not symbol or score < MIN_INTERACTION_SCORE:
+                continue
+            if symbol not in best or score > best[symbol]["interaction_score"]:
+                best[symbol] = {
+                    "symbol": symbol,
+                    "ensembl_id": partner.get("id"),
+                    "interaction_score": score,
+                }
+        index += 1
+        if not rows or index * page_size >= total:
+            break
     return sorted(best.values(), key=lambda n: -n["interaction_score"])
 
 
@@ -142,7 +164,7 @@ def maturity(evidence: dict) -> float:
     return 0.75 * approved_term + 0.25 * breadth_term
 
 
-def rank(genes: list[str], size: int) -> tuple[dict, list[dict]]:
+def rank(genes: list[str], page_size: int) -> tuple[dict, list[dict]]:
     """
     Rank the druggable neighbourhood of one or more seed genes.
 
@@ -155,7 +177,7 @@ def rank(genes: list[str], size: int) -> tuple[dict, list[dict]]:
 
     merged: dict[str, dict] = {}
     for gene in genes:
-        for neighbour in mechanism_neighbourhood(resolve_ensembl_id(gene), size):
+        for neighbour in mechanism_neighbourhood(resolve_ensembl_id(gene), page_size):
             symbol = neighbour["symbol"]
             if symbol in genes:  # a seed is not its own candidate
                 continue
@@ -194,14 +216,15 @@ def main() -> int:
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--gene", required=True, nargs="+",
                         help="one or more seed gene symbols, e.g. BUB1B, or CDKN2A TP53")
-    parser.add_argument("--size", type=int, default=100,
-                        help="interactors to pull per seed from Open Targets (default 100)")
+    parser.add_argument("--page-size", type=int, default=100, dest="page_size",
+                        help="API page size; the full neighbourhood is fetched regardless "
+                             "(default 100)")
     parser.add_argument("--top", type=int, default=20, help="rows to print (default 20)")
     parser.add_argument("--out", help="write the full ranking to this TSV path")
     args = parser.parse_args()
 
     genes = [g.upper() for g in args.gene]
-    header, ranked = rank(genes, args.size)
+    header, ranked = rank(genes, args.page_size)
 
     print(f"\n=== stage 0: are the seed genes themselves druggable? ===")
     for gene in genes:

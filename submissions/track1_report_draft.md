@@ -30,7 +30,7 @@
 
 ## 3. Methods
 
-- **Data**: WGS VCF (`WGS_EX2312012_HGWCNDSX7.vcf.gz`), single proband `WGS_EX2312012`,
+- **Data**: the challenge's single-proband WGS VCF (gated; identifiers withheld here),
   GRCh38 (no `chr` prefix in contig IDs), Sentieon Haplotyper → GVCFtyper →
   VariantFiltration. Variant calling already performed; this is a VCF-only analysis path.
 - **Candidate-gene panel**: 14 genes spanning the SAC / centrosome apparatus
@@ -52,11 +52,12 @@
 
 | Variant | Gene | HGVS (canonical) | Consequence | Zygosity | gnomAD AF | ClinVar |
 |---|---|---|---|---|---|---|
-| chr15:g.40209701T>G | BUB1B | `NM_001211.6:c.2210T>G` → p.(Leu737Ter) | stop_gained (HIGH, LoF) | het (0/1, AD 21:25) | 3.3–8.0×10⁻⁵ | **pathogenic / likely_pathogenic** (rs759242053) |
-| chr15:g.40220612T>G | BUB1B | `ENST00000287598.11:c.3006T>G` → p.(Asn1002Lys) | missense (MODERATE) | het (0/1, AD 15:13) | **absent** (not in gnomAD) | none — novel |
+| chr15:g.40209701T>G | BUB1B | `NM_001211.6:c.2210T>G` → p.(Leu737Ter) | stop_gained (HIGH, LoF) | het | 3.3–8.0×10⁻⁵ | **pathogenic / likely_pathogenic** (rs759242053) |
+| chr15:g.40220612T>G | BUB1B | `ENST00000287598.11:c.3006T>G` → p.(Asn1002Lys) | missense (MODERATE) | het | **absent** (not in gnomAD) | none — novel |
 
-- Both calls are `PASS`, high QUAL (708.8 / 344.8), balanced allele depth (true
-  heterozygosity, not contamination), canonical-transcript coding changes.
+- Both calls are `PASS` with high quality scores and balanced allele depth (consistent
+  with true heterozygosity rather than contamination), on canonical-transcript coding
+  changes. Read-level metrics are withheld from this public copy.
 - **Model**: one allele is a null (p.L737Ter; NMD/truncation removes the C-terminal
   domain), the other a damaging C-terminal missense (p.N1002K; Polyphen
   *probably_damaging*, SIFT *deleterious*). In *trans* this is biallelic BUB1B loss of
@@ -109,7 +110,7 @@
 
 ## 8. Reproducibility
 
-- Code: https://github.com/Samistus1234/mva-hackathon-track1 — `analysis/`
+- Code: https://github.com/Samistus1234/mva-hackathon — `analysis/`
   pipeline scripts (`track1_analyze.py`, gene panel, BEDs, `validate_submission.py`,
   README runbook) fully reconstruct the analysis.
 - Environment: macOS; `bcftools`, Python 3.13, Ensembl VEP REST (GRCh38).

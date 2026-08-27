@@ -55,9 +55,10 @@ purpose-built BUBR1 stabiliser programme with the §7 assays as its entry criter
 Alongside the analysis we release **`repurpose.py`**, a mechanism-hop tool built for the
 general case: when a rare-disease gene has no drugs (BUB1B has *zero* in DGIdb), it hops
 through the gene's interaction neighbourhood to find druggable partners. Run blind on
-BUB1B it independently converges on the BUBR1 acetylation machinery — the exact axis the
-literature points to — which is how that axis earned its place here rather than being
-assumed into it.
+BUB1B, nine of the fourteen druggable neighbours it returns are BUBR1's acetylation
+machinery — the class the published mouse work points to. That nomination is what put the
+axis on our list rather than us assuming it there; §4.3 sets out precisely how much weight
+the convergence can bear, which is less than the headline suggests.
 
 ---
 
@@ -76,7 +77,9 @@ signature of constitutional aneuploidy, and the parents' miscarriages are part o
 phenotype rather than background — embryonic aneuploidy arising from the same defect.
 
 *Per the challenge's data-use terms, this report adds no clinical detail beyond the
-released phenotype document, and the repository contains no patient data.*
+released phenotype document. The repository publishes no read-level data, sample
+identifier, or derived variant table — only the variant predictions that constitute the
+Track 1 submission itself.*
 
 ---
 
@@ -136,6 +139,7 @@ PMID 27731420).
   multiple submitters, MVA1.)
 - **Phase is inferred.** Parental genotypes were not available; *trans* configuration is
   supported by allele balance and by the recessive disease model, not proven.
+
 ---
 
 ## 4. Method: what to do when the causal gene has no drugs
@@ -169,9 +173,9 @@ which is what makes it reusable beyond this case (§8).
 
 ### 4.3 What it found, and why that mattered to us
 
-Of BUB1B's 37 confident interactors, almost every druggable one belongs to a single
-functional class: **the acetylation machinery that controls BUBR1 stability** — KAT2B and
-KAT2A (acetyltransferases), SIRT2 (deacetylase), and class I/II HDACs.
+BUB1B has 37 interactors at or above the 0.40 confidence floor, of which 14 carry any
+drug evidence at all. **Nine of those 14 are acetylation machinery** — KAT2A and KAT2B
+(acetyltransferases), SIRT2 (deacetylase), EP300, and five class I/II HDACs.
 
 | gene | IntAct | drugs | approved | priority |
 |---|---|---|---|---|
@@ -184,15 +188,30 @@ KAT2A (acetyltransferases), SIRT2 (deacetylase), and class I/II HDACs.
 | MAD2L1 | 0.91 | **0** | 0 | 0.000 |
 
 Two observations. The tightest binding partners — CDC20, BUB3, MAD2L1, the core checkpoint
-itself — are pharmacologically empty; the checkpoint is not a drug target. And the tool,
-which knows nothing of the MVA literature, lands on the SIRT2/acetylation axis that the
-published mouse work points to. **That convergence is why we took the axis seriously; it
-is also why we were then obliged to test it properly, which is where it ran into trouble
-(§5.2).**
+itself — are pharmacologically empty; the checkpoint is not a drug target. And a tool that
+knows nothing of the MVA literature puts the acetylation machinery, including SIRT2, in
+front of us — the same axis the published mouse work points to. That is why we took the
+axis seriously, and why we were then obliged to test it properly (§5.2, where it fails).
 
-Running the downstream consequence instead (`--gene CDKN2A TP53`) surfaces CDK4/CDK6
-inhibitors, SIRT1, and PARP1 — the p16–RB senescence axis, with PARP1 (an NAD⁺-consuming
-enzyme) tying the two axes back together.
+**How much weight that convergence bears — stated precisely, because it is easy to
+oversell.** The enrichment is real but the *ranking* is soft: the six top-priority rows all
+sit at exactly 0.40, the interaction floor, so their order is a tie broken by API row
+order rather than by biology, and SIRT2 itself ranks eighth (priority 0.217), not first.
+CREBBP/CBP — the acetyltransferase that opposes SIRT2 in the mechanism we go on to
+describe — is **absent** from BUB1B's IntAct neighbourhood entirely. So the honest claim is
+that the tool nominates the acetylation *class*, not that it identifies SIRT2 as the target.
+
+We checked that this is not simply what a hub-rich interactome returns for any gene. Run on
+unrelated disease genes, the acetylation machinery does not dominate: *HBB* returns HSPA8,
+MDM4, PSMC5 and the other globins; *SMN1* returns SMN2 at the top. That last result is a
+useful positive control — SMN2 is the target of nusinersen, the approved therapy for spinal
+muscular atrophy, and the tool surfaces it first from the disease gene without being told
+anything about the disease.
+
+Running the downstream consequence instead (`--gene CDKN2A TP53`) yields 318 interactors
+above the floor, headed by CDK4 and CDK6 (palbociclib, abemaciclib, ribociclib), SIRT1,
+CREBBP and PARP1 — the p16–RB senescence axis, with PARP1, an NAD⁺-consuming enzyme, tying
+the two axes back together.
 
 **What the ranking is and is not.** It scores *tractability* — how coupled a protein is to
 the disease gene and how mature its pharmacology is. It does not score therapeutic merit,
@@ -470,6 +489,7 @@ This is the recommendation we would put to a funder: not a repurposed drug for t
 today, but a defined, feasible target-discovery programme — with the two cell-based
 experiments in §7 as its entry criterion, and an approved-drug precedent for the exact
 structural problem.
+
 ---
 
 ## 6. What we rejected, and why that section exists
@@ -497,6 +517,7 @@ One further discipline: where we could not verify a citation to primary-source s
 dropped it rather than soften it. A report suggesting that nicotinamide riboside *suppresses*
 some tumour types would have made our NAD⁺ section look more balanced; we could not verify
 it and so it does not appear as a counterweight.
+
 ---
 
 ## 7. The contribution we would defend hardest: measure before you medicate
@@ -598,10 +619,11 @@ complaint is growth failure — the same axis as the drug's labelled toxicity.
 
 **Ethics and data use.** The genomic and clinical data were used solely for this
 challenge, under the terms accepted at download (WCG IRB protocol #20252010). This report
-adds no clinical detail beyond the released phenotype document, and the public repository
-contains no patient data — only code, public-database outputs, and this analysis. All
-challenge data will be deleted within 30 days of challenge close, with confirmation to the
-organisers as required.
+adds no clinical detail beyond the released phenotype document. The public repository
+carries code, public-database outputs, this analysis, and the variant predictions that were
+submitted and scored — no read-level data, sample identifier, or patient-derived variant
+table. All challenge data will be deleted within 30 days of challenge close, with
+confirmation to the organisers as required.
 
 **Limitations.**
 
@@ -618,6 +640,7 @@ organisers as required.
 7. n = 1. Nothing here is generalisable to other MVA patients without their genotypes;
    the Sieben allelic-series work is explicit that different *BUB1B* allele combinations
    produce materially different disease.
+
 ---
 
 ## 10. References

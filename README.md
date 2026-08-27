@@ -6,9 +6,12 @@
 One child with **Mosaic Variegated Aneuploidy**. Track 1 asks which variant causes it;
 Track 2 asks whether anything can be done about it. This repository holds both.
 
-**No patient data is in this repository.** The WGS VCF and phenotype document are gated on
-Hugging Face and stay local; all challenge data is deleted within 30 days of challenge
-close per the data-use terms (WCG IRB #20252010).
+**Patient data handling.** The WGS VCF and the phenotype document are gated on Hugging
+Face and stay local — neither is in this repository, and no read-level data, sample
+identifier, or derived variant table is published here. What the repository does contain
+is the variant *predictions* that constitute the Track 1 submission itself, including the
+secondary candidates that were submitted and scored. All challenge data is deleted within
+30 days of challenge close per the data-use terms (WCG IRB #20252010).
 
 ---
 

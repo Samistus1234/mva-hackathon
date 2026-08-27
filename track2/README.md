@@ -29,17 +29,27 @@ Running the two mechanism axes of this disease:
 | Restore BUBR1 dose | `BUB1B` | `--gene BUB1B` | `outputs/axis1_bub1b_stabilisation.tsv` |
 | Clear the downstream consequence | `CDKN2A TP53` | `--gene CDKN2A TP53` | `outputs/axis2_senescence.tsv` |
 
-Axis 1 is the informative one. Of BUB1B's 37 confident interactors, the druggable
-ones are almost entirely its **acetylation-control machinery** — KAT2B and KAT2A
-(acetyltransferases), SIRT2, and the class-I/II HDACs. The pipeline is blind to the
-literature, yet it lands on precisely the axis where the in-vivo evidence sits: SIRT2
-deacetylates BubR1 and controls its stability, and raising NAD⁺ raises BubR1 in
-BubR1-hypomorphic mice. Convergence of an unbiased network hop with published mouse
-pharmacology is what promoted this axis to candidate #1 in the report.
+Axis 1 is the informative one. BUB1B has 37 interactors above the confidence floor, of
+which 14 carry any drug evidence — and **nine of those 14 are acetylation machinery**
+(KAT2A, KAT2B, SIRT2, EP300, and five HDACs). The pipeline is blind to the literature, yet
+it nominates the axis where the in-vivo evidence sits: SIRT2 deacetylates BubR1 and
+controls its stability.
 
-Axis 2 surfaces CDK4/CDK6 (palbociclib, abemaciclib, ribociclib), SIRT1, and PARP1 —
-the p16–RB senescence axis, and, in PARP1, an NAD⁺-consuming enzyme that ties the two
-axes back together.
+Read that result carefully, though. The six top-priority rows all sit at exactly 0.40 —
+the interaction floor — so their order is a tie, and SIRT2 itself ranks eighth. CREBBP,
+the acetyltransferase that opposes SIRT2 in this mechanism, is absent from BUB1B's IntAct
+neighbourhood entirely. The honest claim is that the tool nominates the acetylation
+*class*, not that it picks out SIRT2.
+
+Controls, because "hub genes return chromatin modifiers" is the obvious objection: *HBB*
+returns HSPA8, MDM4, PSMC5 and the other globins; *SMN1* returns **SMN2** first — the
+target of nusinersen, the approved therapy for spinal muscular atrophy. The acetylation
+enrichment is specific to BUB1B, and the tool recovers a known rare-disease target when
+one exists.
+
+Axis 2 yields 318 interactors above the floor, headed by CDK4/CDK6 (palbociclib,
+abemaciclib, ribociclib), SIRT1, CREBBP and PARP1 — the p16–RB senescence axis, with
+PARP1, an NAD⁺-consuming enzyme, tying the two axes back together.
 
 Full reasoning, evidence grading, and the pediatric safety analysis:
 [`report/samistus1234_track2_report.md`](report/samistus1234_track2_report.md).
@@ -50,6 +60,7 @@ Full reasoning, evidence grading, and the pediatric safety analysis:
 python3 repurpose.py --gene BUB1B                       # single seed
 python3 repurpose.py --gene CDKN2A TP53 --out x.tsv     # mechanism axis, several seeds
 python3 repurpose.py --gene CEP57                       # any other MVA gene
+python3 repurpose.py --gene SMN1                        # positive control: returns SMN2
 ```
 
 No install, no API key, no patient data — standard library only, over the public
@@ -61,4 +72,6 @@ case whose causal gene turns out to be undruggable.
 weights approved drugs (75%) over sheer count of known binders (25%). This ranks
 *tractability*, not therapeutic merit — it is a hypothesis generator whose output is
 meant to be filtered by mechanism and safety, which is what the report does. Ties at
-the 0.40 interaction floor are real ties, not precision.
+the 0.40 interaction floor are real ties, not precision. The full interaction
+neighbourhood is paged in — an earlier version read only the first page and silently
+dropped most of a well-studied gene's partners.
