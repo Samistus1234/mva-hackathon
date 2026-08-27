@@ -1,6 +1,6 @@
 # Track 1 Report — MVA Hackathon 2026
 *Rare Disease, Real Kid: MVA Hackathon 2026 · Track 1 Variant Prediction*
-*Team: [team name] · 2026-08-26*
+*Team: Samistus1234 · 2026-08-26*
 
 ---
 
@@ -109,7 +109,7 @@
 
 ## 8. Reproducibility
 
-- Code: public GitHub repository (URL to be provided at submission) — `analysis/`
+- Code: https://github.com/Samistus1234/mva-hackathon-track1 — `analysis/`
   pipeline scripts (`track1_analyze.py`, gene panel, BEDs, `validate_submission.py`,
   README runbook) fully reconstruct the analysis.
 - Environment: macOS; `bcftools`, Python 3.13, Ensembl VEP REST (GRCh38).
